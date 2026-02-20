@@ -1,3 +1,12 @@
+---
+title: AGM Store Backend
+emoji: 🛍️
+colorFrom: blue
+colorTo: green
+sdk: docker
+pinned: false
+---
+
 # AGM Store Builder Backend
 
 A high-performance Python FastAPI backend for the **AGM Store Builder** e-commerce platform. This API powers store creation, product management, order processing, and Monnify payment integration for Nigerian merchants.
