@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome to AGM Store Builder</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            background: white;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 40px 20px;
+            text-align: center;
+        }
+
+        .header h1 {
+            color: white;
+            margin: 0;
+            font-size: 28px;
+        }
+
+        .header p {
+            color: rgba(255, 255, 255, 0.9);
+            margin: 10px 0 0;
+        }
+
+        .content {
+            padding: 40px 30px;
+        }
+
+        .content h2 {
+            color: #667eea;
+            margin-top: 0;
+        }
+
+        .features {
+            margin: 30px 0;
+        }
+
+        .feature {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 20px;
+        }
+
+        .feature-icon {
+            width: 40px;
+            height: 40px;
+            background: #667eea;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 15px;
+            flex-shrink: 0;
+            color: white;
+            font-size: 18px;
+        }
+
+        .feature-text h4 {
+            margin: 0 0 5px;
+            color: #333;
+        }
+
+        .feature-text p {
+            margin: 0;
+            color: #666;
+            font-size: 14px;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 15px 40px;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: bold;
+            margin: 20px 0;
+        }
+
+        .footer {
+            background: #f9f9f9;
+            padding: 30px;
+            text-align: center;
+            color: #666;
+            font-size: 12px;
+        }
+
+        .footer a {
+            color: #667eea;
+            text-decoration: none;
+        }
+
+        .social-links {
+            margin: 20px 0;
+        }
+
+        .social-links a {
+            display: inline-block;
+            width: 35px;
+            height: 35px;
+            background: #667eea;
+            border-radius: 50%;
+            margin: 0 5px;
+            line-height: 35px;
+            color: white;
+            text-decoration: none;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Welcome to AGM Store Builder! 🎉</h1>
+            <p>Your journey to e-commerce success starts here</p>
+        </div>
+
+        <div class="content">
+            <h2>Hi {{ user_name }},</h2>
+            <p>Thank you for joining AGM Store Builder! We're thrilled to have you on board.</p>
+            <p>With AGM Store Builder, you can create your own professional online store in minutes – no coding
+                required.</p>
+
+            <div class="features">
+                <div class="feature">
+                    <div class="feature-icon">🏪</div>
+                    <div class="feature-text">
+                        <h4>Create Your Store</h4>
+                        <p>Set up your beautiful online store with our easy-to-use templates</p>
+                    </div>
+                </div>
+                <div class="feature">
+                    <div class="feature-icon">📦</div>
+                    <div class="feature-text">
+                        <h4>Add Products</h4>
+                        <p>Upload your products and start selling in minutes</p>
+                    </div>
+                </div>
+                <div class="feature">
+                    <div class="feature-icon">💳</div>
+                    <div class="feature-text">
+                        <h4>Accept Payments</h4>
+                        <p>Receive payments directly to your bank account</p>
+                    </div>
+                </div>
+                <div class="feature">
+                    <div class="feature-icon">📊</div>
+                    <div class="feature-text">
+                        <h4>Track Sales</h4>
+                        <p>Monitor your business with powerful analytics</p>
+                    </div>
+                </div>
+            </div>
+
+            <center>
+                <a href="{{ dashboard_url }}" class="cta-button">Get Started Now</a>
+            </center>
+
+            <p>Need help getting started? Check out our <a href="{{ help_url }}">Help Center</a> or reply to this email
+                – we're here to help!</p>
+        </div>
+
+        <div class="footer">
+            <div class="social-links">
+                <a href="#">📘</a>
+                <a href="#">🐦</a>
+                <a href="#">📸</a>
+            </div>
+            <p>&copy; {{ year }} AGM Store Builder. All rights reserved.</p>
+            <p>
+                <a href="{{ unsubscribe_url }}">Unsubscribe</a> |
+                <a href="{{ privacy_url }}">Privacy Policy</a>
+            </p>
+        </div>
+    </div>
+</body>
+
+</html>

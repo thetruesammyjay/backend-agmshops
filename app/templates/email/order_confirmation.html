@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order Confirmation</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            background: white;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 30px 20px;
+            text-align: center;
+        }
+
+        .header h1 {
+            color: white;
+            margin: 0;
+            font-size: 24px;
+        }
+
+        .store-name {
+            color: rgba(255, 255, 255, 0.9);
+            margin: 5px 0 0;
+        }
+
+        .content {
+            padding: 30px;
+        }
+
+        .success-badge {
+            background: #10b981;
+            color: white;
+            display: inline-block;
+            padding: 8px 20px;
+            border-radius: 20px;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+
+        .order-info {
+            background: #f9f9f9;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+
+        .order-info-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+        }
+
+        .order-info-label {
+            color: #666;
+        }
+
+        .order-info-value {
+            font-weight: bold;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+
+        th {
+            background: #667eea;
+            color: white;
+            padding: 12px;
+            text-align: left;
+        }
+
+        td {
+            padding: 12px;
+            border-bottom: 1px solid #eee;
+        }
+
+        .product-image {
+            width: 50px;
+            height: 50px;
+            object-fit: cover;
+            border-radius: 4px;
+        }
+
+        .totals {
+            background: #f9f9f9;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+
+        .totals-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+        }
+
+        .totals-row.grand-total {
+            border-top: 2px solid #ddd;
+            padding-top: 10px;
+            margin-top: 10px;
+            font-size: 18px;
+            font-weight: bold;
+            color: #667eea;
+        }
+
+        .delivery-info {
+            background: #e8f4fd;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+
+        .delivery-info h4 {
+            margin-top: 0;
+            color: #0369a1;
+        }
+
+        .track-button {
+            display: inline-block;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 15px 40px;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: bold;
+            margin: 20px 0;
+        }
+
+        .footer {
+            background: #f9f9f9;
+            padding: 20px;
+            text-align: center;
+            color: #666;
+            font-size: 12px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🛍️ Order Confirmed!</h1>
+            <p class="store-name">{{ store_name }}</p>
+        </div>
+
+        <div class="content">
+            <center>
+                <span class="success-badge">✓ Order Placed Successfully</span>
+            </center>
+
+            <p>Hi {{ customer_name }},</p>
+            <p>Thank you for your order! We're getting it ready for you.</p>
+
+            <div class="order-info">
+                <div class="order-info-row">
+                    <span class="order-info-label">Order Number:</span>
+                    <span class="order-info-value">{{ order_number }}</span>
+                </div>
+                <div class="order-info-row">
+                    <span class="order-info-label">Order Date:</span>
+                    <span class="order-info-value">{{ order_date }}</span>
+                </div>
+                <div class="order-info-row">
+                    <span class="order-info-label">Payment Status:</span>
+                    <span class="order-info-value" style="color: {{ payment_status_color }};">{{ payment_status
+                        }}</span>
+                </div>
+            </div>
+
+            <h3>Order Items</h3>
+            <table>
+                <tr>
+                    <th>Product</th>
+                    <th style="text-align: center;">Qty</th>
+                    <th style="text-align: right;">Price</th>
+                </tr>
+                {% for item in items %}
+                <tr>
+                    <td>
+                        <div style="display: flex; align-items: center; gap: 10px;">
+                            {% if item.image %}
+                            <img src="{{ item.image }}" class="product-image" alt="{{ item.name }}">
+                            {% endif %}
+                            <span>{{ item.name }}</span>
+                        </div>
+                    </td>
+                    <td style="text-align: center;">{{ item.quantity }}</td>
+                    <td style="text-align: right;">₦{{ item.subtotal | number_format }}</td>
+                </tr>
+                {% endfor %}
+            </table>
+
+            <div class="totals">
+                <div class="totals-row">
+                    <span>Subtotal</span>
+                    <span>₦{{ subtotal | number_format }}</span>
+                </div>
+                {% if discount > 0 %}
+                <div class="totals-row">
+                    <span>Discount</span>
+                    <span style="color: #10b981;">-₦{{ discount | number_format }}</span>
+                </div>
+                {% endif %}
+                <div class="totals-row">
+                    <span>Shipping</span>
+                    <span>₦{{ shipping_fee | number_format }}</span>
+                </div>
+                <div class="totals-row grand-total">
+                    <span>Total</span>
+                    <span>₦{{ total | number_format }}</span>
+                </div>
+            </div>
+
+            <div class="delivery-info">
+                <h4>📍 Delivery Address</h4>
+                <p style="margin: 0;">
+                    {{ customer_name }}<br>
+                    {{ delivery_address }}<br>
+                    {{ delivery_state }}{% if delivery_lga %}, {{ delivery_lga }}{% endif %}<br>
+                    📞 {{ customer_phone }}
+                </p>
+            </div>
+
+            <center>
+                <a href="{{ track_url }}" class="track-button">Track Your Order</a>
+            </center>
+
+            <p style="color: #666; font-size: 14px;">If you have any questions about your order, please contact our
+                seller or reply to this email.</p>
+        </div>
+
+        <div class="footer">
+            <p>Powered by AGM Store Builder</p>
+            <p>&copy; {{ year }} All rights reserved.</p>
+        </div>
+    </div>
+</body>
+
+</html>

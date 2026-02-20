@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment Received</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            background: white;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+            padding: 40px 20px;
+            text-align: center;
+        }
+
+        .header h1 {
+            color: white;
+            margin: 0;
+            font-size: 28px;
+        }
+
+        .check-icon {
+            width: 80px;
+            height: 80px;
+            background: white;
+            border-radius: 50%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+            font-size: 40px;
+        }
+
+        .content {
+            padding: 40px 30px;
+            text-align: center;
+        }
+
+        .amount-box {
+            background: linear-gradient(135deg, #d1fae5 0%, #a7f3d0 100%);
+            border-radius: 12px;
+            padding: 30px;
+            margin: 30px 0;
+        }
+
+        .amount {
+            font-size: 42px;
+            font-weight: bold;
+            color: #059669;
+            margin: 10px 0;
+        }
+
+        .payment-details {
+            background: #f9f9f9;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 20px 0;
+            text-align: left;
+        }
+
+        .payment-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 0;
+            border-bottom: 1px solid #eee;
+        }
+
+        .payment-row:last-child {
+            border-bottom: none;
+        }
+
+        .payment-label {
+            color: #666;
+        }
+
+        .payment-value {
+            font-weight: bold;
+        }
+
+        .status-badge {
+            display: inline-block;
+            background: #10b981;
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 14px;
+        }
+
+        .next-steps {
+            background: #e8f4fd;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 20px 0;
+            text-align: left;
+        }
+
+        .next-steps h4 {
+            margin-top: 0;
+            color: #0369a1;
+        }
+
+        .next-steps ol {
+            margin: 10px 0 0;
+            padding-left: 20px;
+        }
+
+        .next-steps li {
+            margin-bottom: 8px;
+        }
+
+        .footer {
+            background: #f9f9f9;
+            padding: 20px;
+            text-align: center;
+            color: #666;
+            font-size: 12px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="check-icon">✓</div>
+            <h1>Payment Received!</h1>
+        </div>
+
+        <div class="content">
+            <p>Great news! We've successfully received your payment.</p>
+
+            <div class="amount-box">
+                <p style="margin: 0; color: #666;">Amount Paid</p>
+                <div class="amount">₦{{ amount | number_format }}</div>
+                <span class="status-badge">✓ Confirmed</span>
+            </div>
+
+            <div class="payment-details">
+                <div class="payment-row">
+                    <span class="payment-label">Order Number</span>
+                    <span class="payment-value">{{ order_number }}</span>
+                </div>
+                <div class="payment-row">
+                    <span class="payment-label">Payment Reference</span>
+                    <span class="payment-value">{{ payment_reference }}</span>
+                </div>
+                <div class="payment-row">
+                    <span class="payment-label">Payment Date</span>
+                    <span class="payment-value">{{ payment_date }}</span>
+                </div>
+                <div class="payment-row">
+                    <span class="payment-label">Payment Method</span>
+                    <span class="payment-value">{{ payment_method }}</span>
+                </div>
+            </div>
+
+            <div class="next-steps">
+                <h4>📦 What's Next?</h4>
+                <ol>
+                    <li>Your order is now being processed by the seller</li>
+                    <li>You'll receive a notification when your order ships</li>
+                    <li>Track your order anytime using your order number</li>
+                </ol>
+            </div>
+
+            <p style="color: #666; font-size: 14px;">Thank you for shopping with us! If you have any questions, feel
+                free to reach out to the seller.</p>
+        </div>
+
+        <div class="footer">
+            <p>Powered by AGM Store Builder</p>
+            <p>&copy; {{ year }} All rights reserved.</p>
+        </div>
+    </div>
+</body>
+
+</html>
